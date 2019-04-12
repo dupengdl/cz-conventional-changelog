@@ -1,6 +1,6 @@
 {
   "name": "cz-conventional-changelog",
-  "version": "0.0.0-semantically-released.0",
+  "version": "0.0.1",
   "description": "Commitizen adapter following the conventional-changelog format.",
   "main": "index.js",
   "scripts": {
@@ -8,12 +8,11 @@
     "test": "echo 'Tests need to be setup!'",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
-  "homepage": "https://github.com/commitizen/cz-conventional-changelog",
   "repository": {
     "type": "git",
-    "url": "https://github.com/commitizen/cz-conventional-changelog.git"
+    "url": "https://github.com/dupengdl/cz-conventional-changelog"
   },
-  "author": "Jim Cummins <jimthedev@gmail.com>",
+  "author": "dupeng",
   "license": "MIT",
   "dependencies": {
     "conventional-commit-types": "^2.0.0",
