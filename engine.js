@@ -72,25 +72,13 @@ module.exports = function (options) {
           default: options.defaultBody
         }, {
           type: 'confirm',
-          name: 'isBreaking',
-          message: 'Are there any breaking changes?',
-          default: false
-        }, {
-          type: 'input',
-          name: 'breaking',
-          message: 'Describe the breaking changes:\n',
-          when: function(answers) {
-            return answers.isBreaking;
-          }
-        }, {
-          type: 'confirm',
           name: 'isIssueAffected',
           message: 'Does this change affect any open issues?',
           default: options.defaultIssues ? true : false
         }, {
           type: 'input',
           name: 'issues',
-          message: 'Add issue references (e.g. "fix #123", "re #123".):\n',
+          message: 'Add issue references (e.g. "fix DP-1234", "re #123".):\n',
           when: function(answers) {
             return answers.isIssueAffected;
           },
@@ -117,14 +105,9 @@ module.exports = function (options) {
         // Wrap these lines at 100 characters
         var body = wrap(answers.body, wrapOptions);
 
-        // Apply breaking change prefix, removing it if already present
-        var breaking = answers.breaking ? answers.breaking.trim() : '';
-        breaking = breaking ? 'BREAKING CHANGE: ' + breaking.replace(/^BREAKING CHANGE: /, '') : '';
-        breaking = wrap(breaking, wrapOptions);
-
         var issues = answers.issues ? wrap(answers.issues, wrapOptions) : '';
 
-        var footer = filter([ breaking, issues ]).join('\n\n');
+        var footer = filter([ issues ]).join('\n\n');
 
         commit(head + '\n\n' + body + '\n\n' + footer);
       });
