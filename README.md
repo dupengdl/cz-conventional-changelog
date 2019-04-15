@@ -8,5 +8,5 @@ Status:
 Part of the [commitizen](https://github.com/commitizen/cz-cli) family. Prompts for [conventional changelog](https://github.com/conventional-changelog/conventional-changelog) standard.
 ### Usage
 ```bash
-npm i --registry=http://npm.mfwdev.com -g commitizen @mfw/cz-conventional-changelog && echo '{ "path": "@mfw/cz-conventional-changelog" }' > ~/.czrc
+npm i -g commitizen @scope/cz-conventional-changelog && echo '{ "path": "@scope/cz-conventional-changelog" }' > ~/.czrc
 ```

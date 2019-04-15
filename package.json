@@ -1,5 +1,5 @@
 {
-  "name": "@mfw/cz-conventional-changelog",
+  "name": "@scope/cz-conventional-changelog",
   "version": "0.0.4",
   "description": "Commitizen adapter following the conventional-changelog format.",
   "main": "index.js",
@@ -11,7 +11,7 @@
   "repository": {
     "url": "https://github.com/dupengdl/cz-conventional-changelog"
   },
-  "author": "dupeng",
+  "author": "dupengdl",
   "license": "MIT",
   "dependencies": {
     "lodash.map": "^4.5.1",
