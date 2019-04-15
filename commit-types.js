@@ -19,6 +19,10 @@ module.exports = {
     'description': '💅  style:    Code Style, Changes that do not affect the meaning of the code (white-space, formatting, etc)',
     'title': 'Styles'
   },
+  'data': {
+    'description': '📈  data:     Analytics data report',
+    'title': 'Analytics report'
+  },
   'refactor': {
     'description': '🔧  refactor: A code change that neither fixes a bug nor adds a feature',
     'title': 'Code Refactoring'
