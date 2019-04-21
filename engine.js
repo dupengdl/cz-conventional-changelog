@@ -65,11 +65,11 @@ module.exports = function (options) {
           name: 'subject',
           message: 'Write a short, imperative tense description of the change:\n',
           default: options.defaultSubject
-        }, {
-          type: 'input',
-          name: 'body',
-          message: 'Provide a longer description of the change: (press enter to skip)\n',
-          default: options.defaultBody
+        // }, {
+        //   type: 'input',
+        //   name: 'body',
+        //   message: 'Provide a longer description of the change: (press enter to skip)\n',
+        //   default: options.defaultBody
         }, {
           type: 'confirm',
           name: 'isIssueAffected',
@@ -103,7 +103,8 @@ module.exports = function (options) {
         var head = (answers.type + scope + ': ' + answers.subject.trim()).slice(0, maxLineWidth);
 
         // Wrap these lines at 100 characters
-        var body = wrap(answers.body, wrapOptions);
+        // var body = wrap(answers.body, wrapOptions);
+        var body = wrap('', wrapOptions);
 
         var issues = answers.issues ? wrap(answers.issues, wrapOptions) : '';
 
