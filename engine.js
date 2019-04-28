@@ -57,11 +57,6 @@ module.exports = function (options) {
           default: options.defaultType
         }, {
           type: 'input',
-          name: 'scope',
-          message: 'What is the scope of this change (e.g. component or file name)? (press enter to skip)\n',
-          default: options.defaultScope
-        }, {
-          type: 'input',
           name: 'subject',
           message: 'Write a short, imperative tense description of the change:\n',
           default: options.defaultSubject
@@ -71,6 +66,11 @@ module.exports = function (options) {
         //   message: 'Provide a longer description of the change: (press enter to skip)\n',
         //   default: options.defaultBody
         }, {
+          type: 'input',
+          name: 'scope',
+          message: 'What is the scope of this change (e.g. component or file name)? (press enter to skip)\n',
+          default: options.defaultScope
+        }, {
           type: 'confirm',
           name: 'isIssueAffected',
           message: 'Does this change affect any open issues?',
@@ -78,7 +78,7 @@ module.exports = function (options) {
         }, {
           type: 'input',
           name: 'issues',
-          message: 'Add issue references (e.g. "fix DP-1234", "re #123".):\n',
+          message: 'Add issue references (e.g. "fix DP-1234", "re DP-1234".):\n',
           when: function(answers) {
             return answers.isIssueAffected;
           },
