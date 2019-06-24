@@ -11,6 +11,10 @@ module.exports = {
     'description': '🐞  fix:      A bug fix',
     'title': 'Bug Fixes'
   },
+  'static': {
+    'description': '🔤  static:   Static changes like text change or any assets url change',
+    'title': 'Builds'
+  },
   'docs': {
     'description': '📚  docs:     Documentation only changes',
     'title': 'Documentation'
@@ -35,12 +39,8 @@ module.exports = {
     'description': '🏁  test:     Add missing tests or correcting existing tests',
     'title': 'Tests'
   },
-  'build': {
-    'description': '📦  build:    Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)',
-    'title': 'Builds'
-  },
   'chore': {
-    'description': '💭  chore:    Changes that don\'t modify src or test files. Such as updating build tasks, package manager',
+    'description': '📦  chore:    Changes that don\'t modify src or test files. Such as updating build tasks, package manager',
     'title': 'Chores'
   },
   'revert': {
