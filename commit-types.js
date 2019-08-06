@@ -15,21 +15,21 @@ module.exports = {
     'description': '🔤  static:   Static changes like text change or any assets url change',
     'title': 'Builds'
   },
+  'refactor': {
+    'description': '🔧  refactor: A code change that neither fixes a bug nor adds a feature',
+    'title': 'Code Refactoring'
+  },
   'docs': {
     'description': '📚  docs:     Documentation only changes',
     'title': 'Documentation'
   },
-  'style': {
-    'description': '💅  style:    Code Style, Changes that do not affect the meaning of the code (white-space, formatting, etc)',
-    'title': 'Styles'
+  'revert': {
+    'description': '⏪  revert:   Revert to a commit',
+    'title': 'Reverts'
   },
   'data': {
     'description': '📈  data:     Analytics data report',
     'title': 'Analytics report'
-  },
-  'refactor': {
-    'description': '🔧  refactor: A code change that neither fixes a bug nor adds a feature',
-    'title': 'Code Refactoring'
   },
   'perf': {
     'description': '🕛  perf:     A code change that improves performance',
@@ -42,9 +42,5 @@ module.exports = {
   'chore': {
     'description': '📦  chore:    Changes that don\'t modify src or test files. Such as updating build tasks, package manager',
     'title': 'Chores'
-  },
-  'revert': {
-    'description': '⏪  revert:   Revert to a commit',
-    'title': 'Reverts'
   }
 };

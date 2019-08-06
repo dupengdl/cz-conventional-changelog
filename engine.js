@@ -39,7 +39,6 @@ module.exports = function (options) {
     // By default, we'll de-indent your commit
     // template and will keep empty lines.
     prompter: function(cz, commit) {
-      console.log('\nLine 1 will be cropped at 100 characters. All other lines will be wrapped after 100 characters.\n');
 
       // Let's ask some questions of the user
       // so that we can populate our commit
@@ -70,6 +69,18 @@ module.exports = function (options) {
           name: 'scope',
           message: 'What is the scope of this change (e.g. component or file name)? (press enter to skip)\n',
           default: options.defaultScope
+        },{
+          type: 'confirm',
+          name: 'isBreaking',
+          message: 'Are there any breaking changes?',
+          default: false
+        },{
+          type: 'input',
+          name: 'breaking',
+          message: 'Describe the breaking changes for A BREAKING CHANGE commit:\n',
+          when: function(answers) {
+            return answers.isBreaking;
+          }
         }, {
           type: 'confirm',
           name: 'isIssueAffected',
@@ -106,11 +117,18 @@ module.exports = function (options) {
         // var body = wrap(answers.body, wrapOptions);
         var body = wrap('', wrapOptions);
 
+        // Apply breaking change prefix, removing it if already present
+        var breaking = answers.breaking ? answers.breaking.trim() : '';
+        breaking = breaking
+          ? 'BREAKING CHANGE: ' + breaking.replace(/^BREAKING CHANGE: /, '')
+          : '';
+        breaking = breaking ? wrap(breaking, wrapOptions) : '';
+
         var issues = answers.issues ? wrap(answers.issues, wrapOptions) : '';
 
         var footer = filter([ issues ]).join('\n\n');
 
-        commit(head + '\n\n' + body + '\n\n' + footer);
+        commit(head + '\n\n' + body + '\n\n' + breaking + '\n\n' + footer);
       });
     }
   };
