@@ -23,24 +23,24 @@ module.exports = {
     'description': '📚  docs:     Documentation only changes',
     'title': 'Documentation'
   },
-  'revert': {
-    'description': '⏪  revert:   Revert to a commit',
-    'title': 'Reverts'
-  },
   'data': {
     'description': '📈  data:     Analytics data report',
     'title': 'Analytics report'
+  },
+  'revert': {
+    'description': '⏪  revert:   Revert to a commit',
+    'title': 'Reverts'
   },
   'perf': {
     'description': '🕛  perf:     A code change that improves performance',
     'title': 'Performance Improvements'
   },
-  'test': {
-    'description': '🏁  test:     Add missing tests or correcting existing tests',
-    'title': 'Tests'
-  },
   'chore': {
     'description': '📦  chore:    Changes that don\'t modify src or test files. Such as updating build tasks, package manager',
     'title': 'Chores'
+  },
+  'test': {
+    'description': '🏁  test:     Add missing tests or correcting existing tests',
+    'title': 'Tests'
   }
 };
