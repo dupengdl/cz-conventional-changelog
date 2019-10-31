@@ -11,13 +11,13 @@ module.exports = {
     "description": "🐞  fix:      A bug fix",
     "title": "Bug Fixes"
   },
+  "improvement": {
+    "description": "⭐  improve:  An improvement to a current feature",
+    "title": "Improvements"
+  },
   "refactor": {
     "description": "🔧  refactor: A code change that neither fixes a bug nor adds a feature (example changes: code extraction, formatting, etc)",
     "title": "Code Refactoring"
-  },
-  "improvement": {
-    "description": "⭐  An improvement to a current feature",
-    "title": "Improvements"
   },
   "static": {
     "description": "🔤  static:   Static changes like text change or any assets url change",
