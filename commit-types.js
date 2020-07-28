@@ -21,7 +21,7 @@ module.exports = {
   },
   "static": {
     "description": "🔤  static:   Static changes like text change or any assets url change",
-    "title": "Builds"
+    "title": "Static"
   },
   "docs": {
     "description": "📚  docs:     Documentation only changes",
