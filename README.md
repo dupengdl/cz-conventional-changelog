@@ -1,4 +1,6 @@
-# cz-conventional-changelog
+# cz-conventional-changelog-forked-dp
+
+###Forked from [cz-conventional-changelog](https://github.com/commitizen/cz-conventional-changelog)
 
 Status:
 [![npm version](https://img.shields.io/npm/v/cz-conventional-changelog.svg?style=flat-square)](https://www.npmjs.org/package/cz-conventional-changelog)
@@ -6,7 +8,8 @@ Status:
 [![Build Status](https://img.shields.io/travis/commitizen/cz-conventional-changelog.svg?style=flat-square)](https://travis-ci.org/commitizen/cz-conventional-changelog)
 
 Part of the [commitizen](https://github.com/commitizen/cz-cli) family. Prompts for [conventional changelog](https://github.com/conventional-changelog/conventional-changelog) standard.
+
 ### Usage
 ```bash
-npm i -g commitizen @scope/cz-conventional-changelog && echo '{ "path": "@scope/cz-conventional-changelog" }' > ~/.czrc
+npm i -g commitizen cz-conventional-changelog-forked-dp && echo '{ "path": "cz-conventional-changelog-forked-dp" }' > ~/.czrc
 ```

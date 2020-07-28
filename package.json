@@ -1,5 +1,5 @@
 {
-  "name": "@scope/cz-conventional-changelog",
+  "name": "cz-conventional-changelog-forked-dp",
   "version": "0.0.1",
   "description": "Commitizen adapter following the conventional-changelog format.",
   "main": "index.js",

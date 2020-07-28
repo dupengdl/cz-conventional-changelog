@@ -11,29 +11,17 @@ module.exports = {
     "description": "🐞  fix:      A bug fix",
     "title": "Bug Fixes"
   },
-  "improvement": {
-    "description": "⭐  improve:  An improvement to a current feature",
-    "title": "Improvements"
-  },
   "refactor": {
     "description": "🔧  refactor: A code change that neither fixes a bug nor adds a feature (example changes: code extraction, formatting, etc)",
     "title": "Code Refactoring"
   },
-  "static": {
-    "description": "🔤  static:   Static changes like text change or any assets url change",
-    "title": "Builds"
+  "styles": {
+    "description": "💅  style:   Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)",
+    "title": "Styles"
   },
   "docs": {
     "description": "📚  docs:     Documentation only changes",
     "title": "Documentation"
-  },
-  "data": {
-    "description": "📈  data:     Analytics data report",
-    "title": "Analytics report"
-  },
-  "revert": {
-    "description": "⏪  revert:   Revert to a commit",
-    "title": "Reverts"
   },
   "perf": {
     "description": "🕛  perf:     A code change that improves performance",
