@@ -1,30 +1,36 @@
-"format cjs";
+'format cjs'
 
-var wrap = require('word-wrap');
-var map = require('lodash.map');
-var longest = require('longest');
-var rightPad = require('right-pad');
+var wrap = require('word-wrap')
+var map = require('lodash.map')
+var longest = require('longest')
+var rightPad = require('right-pad')
+var childProcess = require('child_process')
 
 var filter = function(array) {
   return array.filter(function(x) {
-    return x;
-  });
-};
+    return x
+  })
+}
 
 // This can be any kind of SystemJS compatible module.
 // We use Commonjs here, but ES6 or AMD would do just
 // fine.
-module.exports = function (options) {
+module.exports = function(options) {
 
-  var types = options.types;
+  var types = options.types
 
-  var length = longest(Object.keys(types)).length + 1;
-  var choices = map(types, function (type, key) {
+  var length = longest(Object.keys(types)).length + 1
+  var choices = map(types, function(type, key) {
     return {
       name: rightPad(key + ':', length) + ' ' + type.description,
-      value: key
-    };
-  });
+      value: key,
+    }
+  })
+
+  var branchName = childProcess.execSync('git branch --show-current').toString().trim()
+  var jiraIssueRegex = /(?<jiraIssue>(?<!([a-zA-Z0-9]{1,10})-?)[a-zA-Z0-9]+-\d+)/
+  var matchResult = branchName.match(jiraIssueRegex)
+  var jiraIssue = matchResult && matchResult.groups && matchResult.groups.jiraIssue
 
   return {
     // When a user runs `git cz`, prompter will
@@ -47,89 +53,107 @@ module.exports = function (options) {
       // See inquirer.js docs for specifics.
       // You can also opt to use another input
       // collection library if you prefer.
-      cz.prompt([
-        {
-          type: 'list',
-          name: 'type',
-          message: 'Select the type of change that you\'re committing:',
-          choices: choices,
-          default: options.defaultType
-        }, {
-          type: 'input',
-          name: 'subject',
-          message: 'Write a short, imperative tense description of the change:\n',
-          default: options.defaultSubject
-        // }, {
-        //   type: 'input',
-        //   name: 'body',
-        //   message: 'Provide a longer description of the change: (press enter to skip)\n',
-        //   default: options.defaultBody
-        }, {
-          type: 'input',
-          name: 'scope',
-          message: 'What is the scope of this change (e.g. component or file name)? (press enter to skip)\n',
-          default: options.defaultScope
-        },{
-          type: 'confirm',
-          name: 'isBreaking',
-          message: 'Are there any breaking changes?',
-          default: false
-        },{
-          type: 'input',
-          name: 'breaking',
-          message: 'Describe the breaking changes for A BREAKING CHANGE commit:\n',
-          when: function(answers) {
-            return answers.isBreaking;
-          }
-        }, {
-          type: 'confirm',
-          name: 'isIssueAffected',
-          message: 'Does this change affect any open issues?',
-          default: options.defaultIssues ? true : false
-        }, {
-          type: 'input',
-          name: 'issues',
-          message: 'Add issue references (e.g. "fix DP-1234", "re DP-1234".):\n',
-          when: function(answers) {
-            return answers.isIssueAffected;
+      cz.prompt(
+        [
+          {
+            type: 'input',
+            name: 'jira',
+            message: 'Provide the Jira ID associated with this change: (press enter to skip)\n',
+            default: jiraIssue,
           },
-          default: options.defaultIssues ? options.defaultIssues : undefined
-        }
-      ]).then(function(answers) {
+          {
+            type: 'list',
+            name: 'type',
+            message: 'Select the type of change that you\'re committing:',
+            choices: choices,
+            default: options.defaultType,
+          },
+          {
+            type: 'input',
+            name: 'subject',
+            message: 'Write a short, imperative tense description of the change:\n',
+            default: options.defaultSubject,
+          },
+          // {
+          //   type: 'input',
+          //   name: 'body',
+          //   message: 'Provide a longer description of the change: (press enter to skip)\n',
+          //   default: options.defaultBody,
+          // },
+          {
+            type: 'input',
+            name: 'scope',
+            message: 'What is the scope of this change (e.g. component or file name)? (press enter to skip)\n',
+            default: options.defaultScope,
+          },
+          {
+            type: 'confirm',
+            name: 'isBreaking',
+            message: 'Are there any breaking changes?',
+            default: false,
+          },
+          {
+            type: 'input',
+            name: 'breaking',
+            message: 'Describe the breaking changes for A BREAKING CHANGE commit:\n',
+            when: function(answers) {
+              return answers.isBreaking
+            },
+          },
+          {
+            type: 'confirm',
+            name: 'isIssueAffected',
+            message: 'Does this change affect any open issues?',
+            default: !!options.defaultIssues,
+          },
+          {
+            type: 'input',
+            name: 'issues',
+            message: 'Add issue references (e.g. "fix DP-1234", "re DP-1234".):\n',
+            when: function(answers) {
+              return answers.isIssueAffected
+            },
+            default: options.defaultIssues ? options.defaultIssues : undefined,
+          },
+        ],
+      ).then(function(answers) {
 
-        var maxLineWidth = 100;
+        var maxLineWidth = 100
 
         var wrapOptions = {
           trim: true,
           newline: '\n',
-          indent:'',
-          width: maxLineWidth
-        };
+          indent: '',
+          width: maxLineWidth,
+        }
 
+        // jira id is only needed when it is present
+        var jira = answers.jira ? answers.jira.trim() : ''
+        jira = jira ? jira + ' ' : ''
         // parentheses are only needed when a scope is present
-        var scope = answers.scope.trim();
-        scope = scope ? '(' + answers.scope.trim() + ')' : '';
+        var scope = answers.scope.trim()
+        scope = scope ? '(' + answers.scope.trim() + ')' : ''
 
         // Hard limit this line
-        var head = (answers.type + scope + ': ' + answers.subject.trim()).slice(0, maxLineWidth);
+        var head = (jira + answers.type + scope + ': ' + answers.subject.trim()).slice(0, maxLineWidth)
 
         // Wrap these lines at 100 characters
         // var body = wrap(answers.body, wrapOptions);
-        var body = wrap('', wrapOptions);
+        var body = wrap('', wrapOptions)
 
         // Apply breaking change prefix, removing it if already present
-        var breaking = answers.breaking ? answers.breaking.trim() : '';
+        var breaking = answers.breaking ? answers.breaking.trim() : ''
         breaking = breaking
           ? 'BREAKING CHANGE: ' + breaking.replace(/^BREAKING CHANGE: /, '')
-          : '';
-        breaking = breaking ? wrap(breaking, wrapOptions) : '';
+          : ''
+        breaking = breaking ? wrap(breaking, wrapOptions) : ''
 
-        var issues = answers.issues ? wrap(answers.issues, wrapOptions) : '';
+        var issues = answers.issues ? wrap(answers.issues, wrapOptions) : ''
 
-        var footer = filter([ issues ]).join('\n\n');
+        var footer = filter([issues]).join('\n\n')
 
-        commit(head + '\n\n' + body + '\n\n' + breaking + '\n\n' + footer);
-      });
-    }
-  };
-};
+        commit([head, body, breaking, footer].join('\n\n'))
+      })
+    },
+  }
+}

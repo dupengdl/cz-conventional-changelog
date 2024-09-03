@@ -1,8 +1,4 @@
 module.exports = {
-  "WIP": {
-    "description": "💪  WIP:      Work in progress",
-    "title": "WIP"
-  },
   "feat": {
     "description": "✨  feat:     A new feature",
     "title": "Features"

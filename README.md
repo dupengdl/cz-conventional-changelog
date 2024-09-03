@@ -1,4 +1,4 @@
-# cz-conventional-changelog-forked-dp
+# cz-conventional-changelog-veeva-jira
 
 ###Forked from [cz-conventional-changelog](https://github.com/commitizen/cz-conventional-changelog)
 
@@ -11,5 +11,5 @@ Part of the [commitizen](https://github.com/commitizen/cz-cli) family. Prompts f
 
 ### Usage
 ```bash
-npm i -g commitizen cz-conventional-changelog-forked-dp && echo '{ "path": "cz-conventional-changelog-forked-dp" }' > ~/.czrc
+npm i -g commitizen cz-conventional-changelog-veeva && echo '{ "path": "cz-conventional-changelog-veeva" }' > ~/.czrc
 ```

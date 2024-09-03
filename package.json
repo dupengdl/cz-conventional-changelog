@@ -1,5 +1,5 @@
 {
-  "name": "cz-conventional-changelog-forked-dp",
+  "name": "cz-conventional-changelog-veeva-jira",
   "version": "0.0.1",
   "description": "Commitizen adapter following the conventional-changelog format.",
   "main": "index.js",
@@ -20,8 +20,8 @@
     "word-wrap": "^1.0.3"
   },
   "devDependencies": {
-    "commitizen": "2.9.6",
-    "semantic-release": "^6.3.2"
+    "commitizen": "^4.3.0",
+    "semantic-release": "^24.1.0"
   },
   "config": {
     "commitizen": {
