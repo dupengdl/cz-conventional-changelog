@@ -58,7 +58,7 @@ module.exports = function(options) {
           {
             type: 'input',
             name: 'jira',
-            message: 'Provide the Jira ID associated with this change: (press enter to skip)\n',
+            message: 'Provide the Jira ID associated with this change: (press enter to ' + (jiraIssue ? 'use branch default ' + jiraIssue : 'skip') + ')\n',
             default: jiraIssue,
           },
           {
